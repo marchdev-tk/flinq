@@ -59,6 +59,46 @@ extension IterableCommonExtension<T> on Iterable<T> {
 
   /// Maps [Iterable] and casts it to a [List].
   ///
-  /// For more info about mapping refer to [Iterable.map].
+  /// Returns a new lazy [List] with elements that are created by
+  /// calling `f` on each element of this `List` in iteration order.
+  ///
+  /// This method returns a view of the mapped elements. As long as the
+  /// returned [List] is not iterated over, the supplied function [f] will
+  /// not be invoked. The transformed elements will not be cached. Iterating
+  /// multiple times over the returned [List] will invoke the supplied
+  /// function [f] multiple times on the same element.
+  ///
+  /// Methods on the returned iterable are allowed to omit calling `f`
+  /// on any element where the result isn't needed.
+  /// For example, [elementAt] may call `f` only once.
   List<E> mapList<E>(E f(T e)) => this.map(f).toList();
+
+  /// Filters [Iterable] and casts it to a [List].
+  ///
+  /// Returns a new lazy [List] with all elements that satisfy the
+  /// predicate [test].
+  ///
+  /// The matching elements have the same order in the returned iterable
+  /// as they have in [iterator].
+  ///
+  /// This method returns a view of the mapped elements.
+  /// As long as the returned [List] is not iterated over,
+  /// the supplied function [test] will not be invoked.
+  /// Iterating will not cache results, and thus iterating multiple times over
+  /// the returned [List] may invoke the supplied
+  List<T> whereList(bool test(T element)) => this.where(test).toList();
+
+  /// Filters [Iterable], then mapps [Iterable] and then casts it to a [List].
+  ///
+  /// For more info about filtering refer to [Iterable.where].
+  /// For more info about mapping refer to [Iterable.map].
+  List<E> whereMapList<E>(bool test(T element), E f(T e)) =>
+      this.where(test).mapList(f);
+
+  /// Maps [Iterable], then filters [Iterable] and then casts it to a [List].
+  ///
+  /// For more info about mapping refer to [Iterable.map].
+  /// For more info about filtering refer to [Iterable.where].
+  List<E> mapWhereList<E>(E f(T e), bool test(E element)) =>
+      this.map(f).whereList(test);
 }
