@@ -22,7 +22,7 @@ jobs:
     - name: Run tests
       run: pub run test
       
-    - name: Coveralls
-      uses: coverallsapp/github-action@v1.0.1
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+#     - name: Coveralls
+#       uses: coverallsapp/github-action@v1.0.1
+#       with:
+#         github-token: ${{ secrets.GITHUB_TOKEN }}
