@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.5.0]
+
+* Added `whereList`, `whereMapList`, `mapWhereList` extensions
+* Added `sumWhere`, `averageWhere` extensions
+* Redo examples
+
 ## [0.4.1]
 
 * Migrated to GitHub

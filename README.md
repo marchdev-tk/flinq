@@ -10,18 +10,25 @@ It's a bunch of shortcuts to avoid unnecesary boilerplate work with collections.
 
 This package will help you to reduce the amount of boilerplate code by adding folowing extensions for `Iterable`s:
 
-* getter `firstOrNull` and method `firstOrNullWhere(bool test(T))` for getting first value, and if it will not be found returns `null`
+* getter `firstOrNull` and method `firstOrNullWhere` for getting first value, and if it will not be found returns `null`
 
-* getter `lastOrNull` and method `lastOrNullWhere(bool test(T))` for getting last value, and if it will not be found returns `null`
+* getter `lastOrNull` and method `lastOrNullWhere` for getting last value, and if it will not be found returns `null`
 
-* getter `singleOrNull` and method `singleOrNullWhere(bool test(T))` for getting single value, and if it will not be found returns `null`, and if there will be too many 
-elements it'll throw the `StateError`
+* getter `singleOrNull` and method `singleOrNullWhere` for getting single value, and if it will not be found returns `null`, and if there will be too many elements it'll throw the `StateError`
 
 * method `mapList`, which maps collection and casts it to `List`
+
+* method `whereList`, which filters collection and casts it to `List`
+
+* method `mapWhereList`, which maps collection, then filters it and then casts it to `List`
+
+* method `whereMapList`, which filters collection, then maps collection and then casts it to `List`
 
 * getter `min` and `max` for getting minimal or maximal value from collection of `Comparable`s
 
 * getter `sum` and `average` for getting sum and average from collection of `num`s
+
+* method `sumWhere` and `averageWhere` for getting sum and average from filtered collection of `num`s
 
 * getter `distinct` which will return `List` with unique values in collection
 
@@ -64,7 +71,25 @@ final singleOrNull = [3, 6, 2, 7, 9].singleOrNullWhere((item) => item > 3); // n
 * **mapList**
 
 ```dart
-List<double> mappedIterable = [3, 6, 2, 7, 9].mapList((item) => item.toDouble());
+List<double> mappedList = [3, 6, 2, 7, 9].mapList((item) => item.toDouble());
+```
+
+* **whereList**
+
+```dart
+List<int> filteredList = [3, 6, 2, 7, 9].whereList((item) => item > 4);
+```
+
+* **whereMapList**
+
+```dart
+List<double> filteredMappedList = [3, 6, 2, 7, 9].whereMapList((item) => item > 4, (item) => item.toDouble());
+```
+
+* **mapWhereList**
+
+```dart
+List<double> mappedFilteredList = [3, 6, 2, 7, 9].mapWhereList((item) => item.toDouble(), (item) => item > 4);
 ```
 
 ### Comparable
@@ -139,6 +164,18 @@ final sum = [3, 6, 2, 7, 9].sum; // 27
 
 ```dart
 final average = [1, 3, 5, 7, 4, 4].average; // 4
+```
+
+* **sumWhere**
+
+```dart
+final sum = [3, 6, 2, 7, 9].sumWhere((_) => _ > 4); // 22
+```
+
+* **averageWhere**
+
+```dart
+final average = [1, 3, 5, 7, 4, 4].averageWhere((_) => _ > 4); // 6
 ```
 
 ### Set
