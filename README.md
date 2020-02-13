@@ -1,6 +1,6 @@
 # flinq
 
-![build](https://github.com/marchdev-tk/flinq/workflows/Dart%20CI/badge.svg)
+![build](https://github.com/marchdev-tk/flinq/workflows/build/badge.svg)
 <!-- [![coverage](https://coveralls.io/repos/github/marchdev-tk/flinq/badge.svg?branch=master)](https://coveralls.io/github/marchdev-tk/flinq?branch=master) -->
 
 Extended capabilities for collections.
