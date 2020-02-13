@@ -1,9 +1,10 @@
-name: Dart CI
+name: build
 
 on:
   push:
     branches: 
       - master
+      - develop
 
 jobs:
   build:
