@@ -4,6 +4,7 @@
 
 * Migrated to GitHub
 * Minor refactorings
+* Updated homepage link
 
 ## [0.4.0]
 
