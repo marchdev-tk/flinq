@@ -1,8 +1,10 @@
 # flinq
 
-![build](https://github.com/marchdev-tk/flinq/workflows/build/badge.svg)
-<!-- [![coverage](https://coveralls.io/repos/github/marchdev-tk/flinq/badge.svg?branch=master)](https://coveralls.io/github/marchdev-tk/flinq?branch=master) -->
-[![flinq](https://img.shields.io/pub/v/flinq.svg)](https://pub.dartlang.org/packages/flinq)
+![Build](https://github.com/marchdev-tk/flinq/workflows/build/badge.svg)
+[![Codecov](https://codecov.io/gh/marchdev-tk/flinq/branch/master/graph/badge.svg)](https://codecov.io/gh/marchdev-tk/flinq)
+[![Pub](https://img.shields.io/pub/v/flinq.svg)](https://pub.dartlang.org/packages/flinq)
+![GitHub](https://img.shields.io/github/license/marchdev-tk/flinq)
+![GitHub stars](https://img.shields.io/github/stars/marchdev-tk/flinq?style=social)
 
 Extended capabilities for collections.
 It's a bunch of shortcuts to avoid unnecesary boilerplate work with collections.

@@ -9,4 +9,4 @@ nohup flutter pub global run coverage:collect_coverage --port=8111 --out=coverag
 
 flutter pub global run coverage:format_coverage --lcov --in=coverage.json --out=lcov.info --packages=.packages --report-on=lib
 
-curl -s https://codecov.io/bash
+curl -s https://codecov.io/bash -t b3b3925e-408c-4e5b-9799-5bc6e287af96
