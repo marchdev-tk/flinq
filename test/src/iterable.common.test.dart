@@ -17,6 +17,9 @@ void iterableCommonTests() {
   lastOrNullWhereTests();
   singleOrNullWhereTests();
   mapListTests();
+  mapWhereListTests();
+  whereMapListTests();
+  notNullTests();
 }
 
 void firstOrNullTests() {
@@ -148,5 +151,112 @@ void mapListTests() {
     'Iterable.mapList on collection with many elements',
     () => expect(_manyCollection.mapList((_) => _.toDouble()),
         <double>[4, 3, 6, 1, 9, 5]),
+  );
+}
+
+void whereListTests() {
+  test(
+    'Iterable.whereList on empty collection',
+    () => expect(_emptyCollection.whereList((_) => _ > 4), <int>[]),
+  );
+  test(
+    'Iterable.whereList on collection with 1 element - positive',
+    () => expect(_oneItemCollection.whereList((_) => _ > 4), <int>[7]),
+  );
+  test(
+    'Iterable.whereList on collection with 1 element - negative',
+    () => expect(_oneItemCollection.whereList((_) => _ < 4), <int>[]),
+  );
+  test(
+    'Iterable.whereList on collection with many elements',
+    () => expect(_manyCollection.whereList((_) => _ > 4), <int>[6, 9, 5]),
+  );
+}
+
+void mapWhereListTests() {
+  test(
+    'Iterable.mapWhereList on empty collection',
+    () => expect(
+      _emptyCollection.mapWhereList<double>((_) => _.toDouble(), (_) => _ > 4),
+      <double>[],
+    ),
+  );
+  test(
+    'Iterable.mapWhereList on collection with 1 element - positive',
+    () => expect(
+      _oneItemCollection.mapWhereList<double>(
+          (_) => _.toDouble(), (_) => _ > 4),
+      <double>[7],
+    ),
+  );
+  test(
+    'Iterable.mapWhereList on collection with 1 element - negative',
+    () => expect(
+      _oneItemCollection.mapWhereList<double>(
+          (_) => _.toDouble(), (_) => _ < 4),
+      <double>[],
+    ),
+  );
+  test(
+    'Iterable.mapWhereList on collection with many elements',
+    () => expect(
+      _manyCollection.mapWhereList<double>((_) => _.toDouble(), (_) => _ > 4),
+      <double>[6, 9, 5],
+    ),
+  );
+}
+
+void whereMapListTests() {
+  test(
+    'Iterable.whereMapList on empty collection',
+    () => expect(
+      _emptyCollection.whereMapList<double>((_) => _ > 4, (_) => _.toDouble()),
+      <double>[],
+    ),
+  );
+  test(
+    'Iterable.whereMapList on collection with 1 element - positive',
+    () => expect(
+      _oneItemCollection.whereMapList<double>(
+          (_) => _ > 4, (_) => _.toDouble()),
+      <double>[7],
+    ),
+  );
+  test(
+    'Iterable.whereMapList on collection with 1 element - negative',
+    () => expect(
+      _oneItemCollection.whereMapList<double>(
+          (_) => _ < 4, (_) => _.toDouble()),
+      <double>[],
+    ),
+  );
+  test(
+    'Iterable.whereMapList on collection with many elements',
+    () => expect(
+      _manyCollection.whereMapList<double>((_) => _ > 4, (_) => _.toDouble()),
+      <double>[6, 9, 5],
+    ),
+  );
+}
+
+void notNullTests() {
+  final oneItemNullCollection = <int>[null];
+  final manyCollection = [null, ..._manyCollection, null];
+
+  test(
+    'Iterable.notNull on empty collection',
+    () => expect(_emptyCollection.notNull, <int>[]),
+  );
+  test(
+    'Iterable.notNull on collection with 1 element - negative',
+    () => expect(_oneItemCollection.notNull, <int>[7]),
+  );
+  test(
+    'Iterable.notNull on collection with 1 element - positive',
+    () => expect(oneItemNullCollection.notNull, <int>[]),
+  );
+  test(
+    'Iterable.notNull on collection with many elements',
+    () => expect(manyCollection.notNull, _manyCollection),
   );
 }

@@ -12,6 +12,8 @@ final Iterable<int> _manyCollection = <int>[4, 3, 6, 1, 9, 5];
 void iterableMathTests() {
   sumTests();
   averageTests();
+  sumWhereTests();
+  averageWhereTests();
 }
 
 void sumTests() {
@@ -41,5 +43,35 @@ void averageTests() {
   test(
     'Iterable<T extends num>.average on collection with many elements',
     () => expect(_manyCollection.average, 28 / 6),
+  );
+}
+
+void sumWhereTests() {
+  test(
+    'Iterable<T extends num>.sumWhere on empty collection',
+    () => expect(_emptyCollection.sumWhere((_) => _ > 4), 0),
+  );
+  test(
+    'Iterable<T extends num>.sumWhere on collection with 1 element',
+    () => expect(_oneItemCollection.sumWhere((_) => _ > 4), 7),
+  );
+  test(
+    'Iterable<T extends num>.sumWhere on collection with many elements',
+    () => expect(_manyCollection.sumWhere((_) => _ > 4), 20),
+  );
+}
+
+void averageWhereTests() {
+  test(
+    'Iterable<T extends num>.averageWhere on empty collection',
+    () => expect(_emptyCollection.averageWhere((_) => _ > 4), 0),
+  );
+  test(
+    'Iterable<T extends num>.averageWhere on collection with 1 element',
+    () => expect(_oneItemCollection.averageWhere((_) => _ > 4), 7),
+  );
+  test(
+    'Iterable<T extends num>.averageWhere on collection with many elements',
+    () => expect(_manyCollection.averageWhere((_) => _ > 4), 20 / 3),
   );
 }
