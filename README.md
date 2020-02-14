@@ -2,6 +2,7 @@
 
 ![build](https://github.com/marchdev-tk/flinq/workflows/build/badge.svg)
 <!-- [![coverage](https://coveralls.io/repos/github/marchdev-tk/flinq/badge.svg?branch=master)](https://coveralls.io/github/marchdev-tk/flinq?branch=master) -->
+[![flinq](https://img.shields.io/pub/v/flinq.svg)](https://pub.dartlang.org/packages/flinq)
 
 Extended capabilities for collections.
 It's a bunch of shortcuts to avoid unnecesary boilerplate work with collections.
