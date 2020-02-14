@@ -25,3 +25,8 @@ jobs:
 
     - name: Collect coverage
       uses: lafernando/github-action-bash@v1.0
+
+#     - name: Coveralls
+#       uses: coverallsapp/github-action@v1.0.1
+#       with:
+#         github-token: ${{ secrets.GITHUB_TOKEN }}
