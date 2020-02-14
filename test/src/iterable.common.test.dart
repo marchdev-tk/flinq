@@ -19,6 +19,7 @@ void iterableCommonTests() {
   mapListTests();
   mapWhereListTests();
   whereMapListTests();
+  notNullTests();
 }
 
 void firstOrNullTests() {
@@ -235,5 +236,27 @@ void whereMapListTests() {
       _manyCollection.whereMapList<double>((_) => _ > 4, (_) => _.toDouble()),
       <double>[6, 9, 5],
     ),
+  );
+}
+
+void notNullTests() {
+  final oneItemNullCollection = <int>[null];
+  final manyCollection = [null, ..._manyCollection, null];
+
+  test(
+    'Iterable.notNull on empty collection',
+    () => expect(_emptyCollection.notNull, <int>[]),
+  );
+  test(
+    'Iterable.notNull on collection with 1 element - negative',
+    () => expect(_oneItemCollection.notNull, <int>[7]),
+  );
+  test(
+    'Iterable.notNull on collection with 1 element - positive',
+    () => expect(oneItemNullCollection.notNull, <int>[]),
+  );
+  test(
+    'Iterable.notNull on collection with many elements',
+    () => expect(manyCollection.notNull, _manyCollection),
   );
 }

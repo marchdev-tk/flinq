@@ -1,7 +1,5 @@
 cd ../
 
-flutter pub run test
-
 flutter pub global activate coverage
 
 dart --disable-service-auth-codes --enable-vm-service=8111 --pause-isolates-on-exit test/flinq_test.dart &

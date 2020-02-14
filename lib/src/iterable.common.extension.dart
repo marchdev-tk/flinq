@@ -101,4 +101,12 @@ extension IterableCommonExtension<T> on Iterable<T> {
   /// For more info about filtering refer to [Iterable.where].
   List<E> mapWhereList<E>(E f(T e), bool test(E element)) =>
       this.map(f).whereList(test);
+
+  /// Returns `this` iterable without any `null` values within this [Iterable].
+  ///
+  /// Not null items of [Iterable] is achieved by [Iterable.where].
+  /// Predicate of [Iterable.where] is `(item) => item != null`.
+  ///
+  /// For more info about filtering refer to [Iterable.where].
+  Iterable<T> get notNull => this.where((_) => _ != null).toList();
 }

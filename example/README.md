@@ -241,6 +241,18 @@ void _mapWhereList() {
   print('---- ------------ ----\n');
 }
 
+void _notNull() {
+  print('---- notNull ----\n');
+
+  final numCollection = [null, ..._numCollection, null];
+
+  final result = numCollection.notNull;
+  assert(result.toString() == _numCollection.toString());
+  print(result.toString());
+
+  print('---- ------- ----\n');
+}
+
 void iterableCommonTest() {
   _firstOrNull();
   _lastOrNull();
@@ -252,6 +264,7 @@ void iterableCommonTest() {
   _whereList();
   _whereMapList();
   _mapWhereList();
+  _notNull();
 }
 ```
 

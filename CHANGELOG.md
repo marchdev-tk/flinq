@@ -2,7 +2,7 @@
 
 ## [0.5.0]
 
-* Added `whereList`, `whereMapList`, `mapWhereList` extensions
+* Added `whereList`, `whereMapList`, `mapWhereList`, `notNull` extensions
 * Added `sumWhere`, `averageWhere` extensions
 * Redo examples
 

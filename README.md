@@ -27,6 +27,8 @@ This package will help you to reduce the amount of boilerplate code by adding fo
 
 * method `whereMapList`, which filters collection, then maps collection and then casts it to `List`
 
+* getter `notNull` for getting only **not null** values from the collection
+
 * getter `min` and `max` for getting minimal or maximal value from collection of `Comparable`s
 
 * getter `sum` and `average` for getting sum and average from collection of `num`s
@@ -93,6 +95,12 @@ List<double> filteredMappedList = [3, 6, 2, 7, 9].whereMapList((item) => item > 
 
 ```dart
 List<double> mappedFilteredList = [3, 6, 2, 7, 9].mapWhereList((item) => item.toDouble(), (item) => item > 4);
+```
+
+* **notNull**
+
+```dart
+Iterable<int> notNullIterable = [3, 6, 2, null, 7, 9].notNull;
 ```
 
 ### Comparable
@@ -223,7 +231,6 @@ final differedCollection = collectionTwo.difference(collectionOne); // [1, 3, 7]
 
 ## Milestones for next releases
 
-* Add `notNull` getter
 * Add `minWhere` method
 * Add `maxWhere` method
 * Add `minOrNullWhere` method
