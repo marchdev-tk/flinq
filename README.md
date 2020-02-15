@@ -1,7 +1,7 @@
 # flinq
 
 ![Build](https://github.com/marchdev-tk/flinq/workflows/build/badge.svg)
-[![Codecov](https://codecov.io/gh/marchdev-tk/flinq/branch/master/graph/badge.svg)](https://codecov.io/gh/marchdev-tk/flinq)
+[![codecov](https://codecov.io/gh/marchdev-tk/flinq/branch/master/graph/badge.svg)](https://codecov.io/gh/marchdev-tk/flinq)
 [![Pub](https://img.shields.io/pub/v/flinq.svg)](https://pub.dartlang.org/packages/flinq)
 ![GitHub](https://img.shields.io/github/license/marchdev-tk/flinq)
 ![GitHub stars](https://img.shields.io/github/stars/marchdev-tk/flinq?style=social)

@@ -23,5 +23,19 @@ jobs:
     - name: Run tests
       run: pub run test
 
-    - name: Collect coverage
-      uses: lafernando/github-action-bash@v1.0
+    - name: Activate coverage package
+      run: pub global activate coverage
+
+    - name: Collect coverage in json
+      run: dart --disable-service-auth-codes --enable-vm-service=8111 --pause-isolates-on-exit test/flinq_test.dart & nohup pub global run coverage:collect_coverage --port=8111 --out=coverage.json --wait-paused --resume-isolates
+
+    - name: Convert coverage to lcov
+      run: pub global run coverage:format_coverage --lcov --in=coverage.json --out=lcov.info --packages=.packages --report-on=lib
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1.0.5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        flags: unittests
+        file: ./lcov.info
+        name: codecov-flinq
