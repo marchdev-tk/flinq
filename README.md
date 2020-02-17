@@ -29,7 +29,9 @@ This package will help you to reduce the amount of boilerplate code by adding fo
 
 * getter `notNull` for getting only **not null** values from the collection
 
-* getter `min` and `max` for getting minimal or maximal value from collection of `Comparable`s
+* getter `min`/`minOrNull` and `max`/`maxOrNull` for getting minimal or maximal value from collection of `Comparable`s
+
+* method `minWhere`/`minOrNullWhere` and `maxWhere`/`maxOrNullWhere` for getting minimal or maximal value from filtered collection of `Comparable`s
 
 * getter `sum` and `average` for getting sum and average from collection of `num`s
 
@@ -113,12 +115,28 @@ final min = [3, 6, 2, 7, 9].min; // 2
 final min = [].minOrNull; // null
 ```
 
+* **minWhere** and **minOrNullWhere**
+
+```dart
+final min = [3, 6, 2, 7, 9].minWhere((_) => _ > 4); // 6
+// or
+final min = [3, 2].minOrNullWhere((_) => _ > 4); // null
+```
+
 * **max** and **maxOrNull**
 
 ```dart
 final max = [3, 6, 2, 7, 9].max; // 9
 // or
 final max = [].maxOrNull; // null
+```
+
+* **maxWhere** and **maxOrNullWhere**
+
+```dart
+final max = [3, 6, 2, 7, 9].maxWhere((_) => _ < 4); // 3
+// or
+final max = [3, 2].maxOrNullWhere((_) => _ > 4); // null
 ```
 
 * **group**
