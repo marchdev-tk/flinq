@@ -29,19 +29,21 @@ This package will help you to reduce the amount of boilerplate code by adding fo
 
 * getter `notNull` for getting only **not null** values from the collection
 
-* getter `min` and `max` for getting minimal or maximal value from collection of `Comparable`s
+* getter `min`/`minOrNull` and `max`/`maxOrNull` for getting minimal or maximal value from collection of `Comparable`s
+
+* method `minWhere`/`minOrNullWhere` and `maxWhere`/`maxOrNullWhere` for getting minimal or maximal value from filtered collection of `Comparable`s
 
 * getter `sum` and `average` for getting sum and average from collection of `num`s
 
 * method `sumWhere` and `averageWhere` for getting sum and average from filtered collection of `num`s
 
-* getter `distinct` which will return `List` with unique values in collection
+* getter `distinct` and method `distinctWhere` which will return `List` with unique values in collection
 
-* method `union` which will return `List` with union of two collections with only unique values in resulting collection
+* method `union` and `unionWhere` which will return `List` with union of two collections with only unique values in resulting collection
 
-* method `intersection` which will return `List` with elements that contains both collections with only unique values in resulting collection
+* method `intersection` and `intersectionWhere` which will return `List` with elements that contains both collections with only unique values in resulting collection
 
-* method `difference` which will return `List` with difference between two collections with only unique values in resulting collection
+* method `difference` and `differenceWhere` which will return `List` with difference between two collections with only unique values in resulting collection
 
 ## Examples
 
@@ -113,12 +115,28 @@ final min = [3, 6, 2, 7, 9].min; // 2
 final min = [].minOrNull; // null
 ```
 
+* **minWhere** and **minOrNullWhere**
+
+```dart
+final min = [3, 6, 2, 7, 9].minWhere((_) => _ > 4); // 6
+// or
+final min = [3, 2].minOrNullWhere((_) => _ > 4); // null
+```
+
 * **max** and **maxOrNull**
 
 ```dart
 final max = [3, 6, 2, 7, 9].max; // 9
 // or
 final max = [].maxOrNull; // null
+```
+
+* **maxWhere** and **maxOrNullWhere**
+
+```dart
+final max = [3, 6, 2, 7, 9].maxWhere((_) => _ < 4); // 3
+// or
+final max = [3, 2].maxOrNullWhere((_) => _ > 4); // null
 ```
 
 * **group**
@@ -195,9 +213,16 @@ final average = [1, 3, 5, 7, 4, 4].averageWhere((_) => _ > 4); // 6
 
 ```dart
 final collectionOne = [2, 5, 8, 2];
-final collectionTwo = [1, 3, 5, 7];
 
 final distinctCollection = collectionOne.distinct; // [2, 5, 8]
+```
+
+* **distinctWhere**
+
+```dart
+final collectionOne = [2, 5, 8, 2];
+
+final distinctCollection = collectionOne.distinctWhere((_) => _ > 4); // [5, 8]
 ```
 
 * **union**
@@ -209,6 +234,15 @@ final collectionTwo = [1, 3, 5, 7];
 final unitedCollection = collectionOne.union(collectionTwo); // [2, 5, 8, 1, 3, 7]
 ```
 
+* **unionWhere**
+
+```dart
+final collectionOne = [2, 5, 8, 2];
+final collectionTwo = [1, 3, 5, 7];
+
+final unitedCollection = collectionOne.unionWhere(collectionTwo, (_) => _ > 4); // [5, 8, 7]
+```
+
 * **intersection**
 
 ```dart
@@ -216,6 +250,15 @@ final collectionOne = [2, 5, 8, 2];
 final collectionTwo = [1, 3, 5, 7];
 
 final intersectedCollection = collectionOne.intersection(collectionTwo); // [5]
+```
+
+* **intersectionWhere**
+
+```dart
+final collectionOne = [2, 5, 8, 2];
+final collectionTwo = [1, 3, 5, 7];
+
+final intersectedCollection = collectionOne.intersectionWhere(collectionTwo, (_) => _ < 4); // []
 ```
 
 * **difference**
@@ -229,9 +272,17 @@ final differedCollection = collectionOne.difference(collectionTwo); // [2, 8]
 final differedCollection = collectionTwo.difference(collectionOne); // [1, 3, 7]
 ```
 
-## Milestones for next releases
+* **differenceWhere**
 
-* Add `minWhere` method
-* Add `maxWhere` method
-* Add `minOrNullWhere` method
-* Add `maxOrNullWhere` method
+```dart
+final collectionOne = [2, 5, 8, 2];
+final collectionTwo = [1, 3, 5, 7];
+
+final differedCollection = collectionOne.differenceWhere(collectionTwo, (_) => _ < 4); // [2]
+// or
+final differedCollection = collectionTwo.differenceWhere(collectionOne, (_) => _ < 4); // [1, 3]
+```
+
+## Feature requests
+
+Feel free to post feature requests [here](https://github.com/marchdev-tk/flinq/issues).

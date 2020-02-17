@@ -14,6 +14,10 @@ void iterableComparableTests() {
   maxTests();
   minOrNullTests();
   maxOrNullTests();
+  minWhereTests();
+  maxWhereTests();
+  minOrNullWhereTests();
+  maxOrNullWhereTests();
   groupTests();
   groupMapTest();
 }
@@ -77,6 +81,86 @@ void maxOrNullTests() {
   test(
     'Iterable<T extends Comparable>.maxOrNull on collection with many elements',
     () => expect(_manyCollection.maxOrNull, 9),
+  );
+}
+
+void minWhereTests() {
+  test(
+    'Iterable<T extends Comparable>.minWhere on empty collection',
+    () => expect(() => _emptyCollection.minWhere((_) => _ > 4),
+        throwsA(TypeMatcher<StateError>())),
+  );
+  test(
+    'Iterable<T extends Comparable>.minWhere on collection with 1 element - positive',
+    () => expect(_oneItemCollection.minWhere((_) => _ > 4), 7),
+  );
+  test(
+    'Iterable<T extends Comparable>.minWhere on collection with 1 element - negative',
+    () => expect(() => _oneItemCollection.minWhere((_) => _ < 4),
+        throwsA(TypeMatcher<StateError>())),
+  );
+  test(
+    'Iterable<T extends Comparable>.minWhere on collection with many elements',
+    () => expect(_manyCollection.minWhere((_) => _ > 4), 5),
+  );
+}
+
+void maxWhereTests() {
+  test(
+    'Iterable<T extends Comparable>.maxWhere on empty collection',
+    () => expect(() => _emptyCollection.maxWhere((_) => _ > 4),
+        throwsA(TypeMatcher<StateError>())),
+  );
+  test(
+    'Iterable<T extends Comparable>.maxWhere on collection with 1 element - positive',
+    () => expect(_oneItemCollection.maxWhere((_) => _ > 4), 7),
+  );
+  test(
+    'Iterable<T extends Comparable>.maxWhere on collection with 1 element - negative',
+    () => expect(() => _oneItemCollection.maxWhere((_) => _ < 4),
+        throwsA(TypeMatcher<StateError>())),
+  );
+  test(
+    'Iterable<T extends Comparable>.maxWhere on collection with many elements',
+    () => expect(_manyCollection.maxWhere((_) => _ < 4), 3),
+  );
+}
+
+void minOrNullWhereTests() {
+  test(
+    'Iterable<T extends Comparable>.minOrNullWhere on empty collection',
+    () => expect(_emptyCollection.minOrNullWhere((_) => _ < 4), null),
+  );
+  test(
+    'Iterable<T extends Comparable>.minOrNullWhere on collection with 1 element - positive',
+    () => expect(_oneItemCollection.minOrNullWhere((_) => _ > 4), 7),
+  );
+  test(
+    'Iterable<T extends Comparable>.minOrNullWhere on collection with 1 element - negative',
+    () => expect(_oneItemCollection.minOrNullWhere((_) => _ < 4), null),
+  );
+  test(
+    'Iterable<T extends Comparable>.minOrNullWhere on collection with many elements',
+    () => expect(_manyCollection.minOrNullWhere((_) => _ > 4), 5),
+  );
+}
+
+void maxOrNullWhereTests() {
+  test(
+    'Iterable<T extends Comparable>.maxOrNullWhere on empty collection',
+    () => expect(_emptyCollection.maxOrNullWhere((_) => _ > 4), null),
+  );
+  test(
+    'Iterable<T extends Comparable>.maxOrNullWhere on collection with 1 element - positive',
+    () => expect(_oneItemCollection.maxOrNullWhere((_) => _ > 4), 7),
+  );
+  test(
+    'Iterable<T extends Comparable>.maxOrNullWhere on collection with 1 element - negative',
+    () => expect(_oneItemCollection.maxOrNullWhere((_) => _ < 4), null),
+  );
+  test(
+    'Iterable<T extends Comparable>.maxOrNullWhere on collection with many elements',
+    () => expect(_manyCollection.maxOrNullWhere((_) => _ < 4), 3),
   );
 }
 

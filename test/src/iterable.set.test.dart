@@ -14,6 +14,10 @@ void iterableSetTests() {
   unionTests();
   intersectionTests();
   differenceTests();
+  distinctWhereTests();
+  unionWhereTests();
+  intersectionWhereTests();
+  differenceWhereTests();
 }
 
 void distinctTests() {
@@ -197,6 +201,216 @@ void differenceTests() {
       final actual = _manyCollection.difference(fullCollection);
       expect(actual is List<int>, true);
       expect(actual, <int>[6, 1, 9]);
+    },
+  );
+}
+
+void distinctWhereTests() {
+  test(
+    'Iterable.distinctWhere on empty collection',
+    () {
+      final actual = _emptyCollection.distinctWhere((_) => _ > 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[]);
+    },
+  );
+  test(
+    'Iterable.distinctWhere on collection with 1 element - positive',
+    () {
+      final actual = _oneItemCollection.distinctWhere((_) => _ > 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[7]);
+    },
+  );
+  test(
+    'Iterable.distinctWhere on collection with 1 element - negative',
+    () {
+      final actual = _oneItemCollection.distinctWhere((_) => _ < 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[]);
+    },
+  );
+  test(
+    'Iterable.distinctWhere on collection with many elements',
+    () {
+      final actual = _manyCollection.distinctWhere((_) => _ < 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[3, 1]);
+    },
+  );
+}
+
+void unionWhereTests() {
+  test(
+    'Iterable.unionWhere on empty collection with empty collection',
+    () {
+      final actual =
+          _emptyCollection.unionWhere(_emptyCollection, (_) => _ > 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[]);
+    },
+  );
+  test(
+    'Iterable.unionWhere on empty collection with full collection',
+    () {
+      final actual =
+          _emptyCollection.unionWhere(_manyCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[4, 6, 9, 5]);
+    },
+  );
+  test(
+    'Iterable.unionWhere on collection (1 element) with empty collection',
+    () {
+      final actual =
+          _oneItemCollection.unionWhere(_emptyCollection, (_) => _ > 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[7]);
+    },
+  );
+  test(
+    'Iterable.unionWhere on collection (1 element) with full collection',
+    () {
+      final actual =
+          _oneItemCollection.unionWhere(_manyCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[7, 4, 6, 9, 5]);
+    },
+  );
+  test(
+    'Iterable.unionWhere on collection (many elements) with empty collection',
+    () {
+      final actual =
+          _manyCollection.unionWhere(_emptyCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[4, 6, 9, 5]);
+    },
+  );
+  test(
+    'Iterable.unionWhere on collection (many elements) with full collection',
+    () {
+      final fullCollection = <int>[2, 4, 7, 0];
+      final actual = _manyCollection.unionWhere(fullCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[4, 6, 9, 5, 7]);
+    },
+  );
+}
+
+void intersectionWhereTests() {
+  test(
+    'Iterable.intersectionWhere on empty collection with empty collection',
+    () {
+      final actual =
+          _emptyCollection.intersectionWhere(_emptyCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[]);
+    },
+  );
+  test(
+    'Iterable.intersectionWhere on empty collection with full collection',
+    () {
+      final actual =
+          _emptyCollection.intersectionWhere(_manyCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[]);
+    },
+  );
+  test(
+    'Iterable.intersectionWhere on collection (1 element) with empty collection',
+    () {
+      final actual =
+          _oneItemCollection.intersectionWhere(_emptyCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[]);
+    },
+  );
+  test(
+    'Iterable.intersectionWhere on collection (1 element) with full collection',
+    () {
+      final fullCollection = <int>[2, 4, 7, 0];
+      final actual =
+          _oneItemCollection.intersectionWhere(fullCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[7]);
+    },
+  );
+  test(
+    'Iterable.intersectionWhere on collection (many elements) with empty collection',
+    () {
+      final actual =
+          _manyCollection.intersectionWhere(_emptyCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[]);
+    },
+  );
+  test(
+    'Iterable.intersectionWhere on collection (many elements) with full collection',
+    () {
+      final fullCollection = <int>[2, 4, 7, 0, 5, 3];
+      final actual =
+          _manyCollection.intersectionWhere(fullCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[4, 5]);
+    },
+  );
+}
+
+void differenceWhereTests() {
+  test(
+    'Iterable.differenceWhere on empty collection with empty collection',
+    () {
+      final actual =
+          _emptyCollection.differenceWhere(_emptyCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[]);
+    },
+  );
+  test(
+    'Iterable.differenceWhere on empty collection with full collection',
+    () {
+      final actual =
+          _emptyCollection.differenceWhere(_manyCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[]);
+    },
+  );
+  test(
+    'Iterable.differenceWhere on collection (1 element) with empty collection',
+    () {
+      final actual =
+          _oneItemCollection.differenceWhere(_emptyCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[7]);
+    },
+  );
+  test(
+    'Iterable.differenceWhere on collection (1 element) with full collection',
+    () {
+      final fullCollection = <int>[2, 4, 7, 0];
+      final actual =
+          _oneItemCollection.differenceWhere(fullCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[]);
+    },
+  );
+  test(
+    'Iterable.differenceWhere on collection (many elements) with empty collection',
+    () {
+      final actual =
+          _manyCollection.differenceWhere(_emptyCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[4, 6, 9, 5]);
+    },
+  );
+  test(
+    'Iterable.differenceWhere on collection (many elements) with full collection',
+    () {
+      final fullCollection = <int>[2, 4, 7, 0, 5, 3];
+      final actual =
+          _manyCollection.differenceWhere(fullCollection, (_) => _ >= 4);
+      expect(actual is List<int>, true);
+      expect(actual, <int>[6, 9]);
     },
   );
 }

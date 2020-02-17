@@ -4,6 +4,8 @@
 
 /// Extensions for comparable `Iterable`
 extension IterableComparableExtension<T extends Comparable> on Iterable<T> {
+  Iterable<T> get _sorted => this.toList()..sort();
+
   /// Returns the element with minimum value.
   ///
   /// If `this` is empty, [StateError] will be thrown.
@@ -44,7 +46,37 @@ extension IterableComparableExtension<T extends Comparable> on Iterable<T> {
     return _sorted.last;
   }
 
-  Iterable<T> get _sorted => this.toList()..sort();
+  /// Returns the element with minimum value of filtered
+  /// collection by `test` predicate.
+  ///
+  /// If `this` is empty, [StateError] will be thrown.
+  ///
+  /// For more info about filtering refer to [Iterable.where].
+  T minWhere(bool test(T element)) => this.where(test).min;
+
+  /// Returns the element with maximum value of filtered
+  /// collection by `test` predicate.
+  ///
+  /// If `this` is empty, [StateError] will be thrown.
+  ///
+  /// For more info about filtering refer to [Iterable.where].
+  T maxWhere(bool test(T element)) => this.where(test).max;
+
+  /// Returns the element with minimum value of filtered
+  /// collection by `test` predicate.
+  ///
+  /// If `this` is empty, the result of invoking is [null].
+  ///
+  /// For more info about filtering refer to [Iterable.where].
+  T minOrNullWhere(bool test(T element)) => this.where(test).minOrNull;
+
+  /// Returns the element with maximum value of filtered
+  /// collection by `test` predicate.
+  ///
+  /// If `this` is empty, the result of invoking is [null].
+  ///
+  /// For more info about filtering refer to [Iterable.where].
+  T maxOrNullWhere(bool test(T element)) => this.where(test).maxOrNull;
 
   /// Groups [Iterable] via `K by(T item)`
   ///

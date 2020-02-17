@@ -16,8 +16,8 @@ final _collection = [
 void _min() {
   print('---- min ----\n');
 
-  var result = _collection
-      .min; // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  var result = _collection.min;
   assert(result == Pet("cat", "Lucy")); // true
   print(result?.toString());
 
@@ -33,11 +33,31 @@ void _min() {
   print('---- --- ----\n');
 }
 
+void _minWhere() {
+  print('---- minWhere ----\n');
+
+  // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  var result = _collection.minWhere((_) => _.name != "cat");
+  assert(result == Pet("dog", "Rex")); // true
+  print(result?.toString());
+
+  try {
+    result = _collection.minWhere((_) => _.name == "rabbit"); // []
+    assert(false);
+    print(result?.toString());
+  } catch (e) {
+    assert(e is StateError); // true (No element)
+    print(e.toString());
+  }
+
+  print('---- --- ----\n');
+}
+
 void _minOrNull() {
   print('---- minOrNull ----\n');
 
-  var result = _collection
-      .minOrNull; // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  var result = _collection.minOrNull;
   assert(result == Pet("cat", "Lucy")); // true
   print(result?.toString());
 
@@ -48,11 +68,26 @@ void _minOrNull() {
   print('---- --------- ----\n');
 }
 
+void _minOrNullWhere() {
+  print('---- minOrNullWhere ----\n');
+
+  // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  var result = _collection.minOrNullWhere((_) => _.name != "cat");
+  assert(result == Pet("dog", "Rex")); // true
+  print(result?.toString());
+
+  result = _emptyCollection.minOrNullWhere((_) => _.name == "rabbit"); // []
+  assert(result == null); // true
+  print(result?.toString());
+
+  print('---- --------- ----\n');
+}
+
 void _max() {
   print('---- max ----\n');
 
-  var result = _collection
-      .max; // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  var result = _collection.max;
   assert(result == Pet("rat", "Mike")); // true
   print(result?.toString());
 
@@ -68,15 +103,50 @@ void _max() {
   print('---- --- ----\n');
 }
 
+void _maxWhere() {
+  print('---- maxWhere ----\n');
+
+  // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  var result = _collection.maxWhere((_) => _.name != "cat");
+  assert(result == Pet("rat", "Mike")); // true
+  print(result?.toString());
+
+  try {
+    result = _collection.maxWhere((_) => _.name == "rabbit"); // []
+    assert(false);
+    print(result?.toString());
+  } catch (e) {
+    assert(e is StateError); // true (No element)
+    print(e.toString());
+  }
+
+  print('---- --- ----\n');
+}
+
 void _maxOrNull() {
   print('---- maxOrNull ----\n');
 
-  var result = _collection
-      .maxOrNull; // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  var result = _collection.maxOrNull;
   assert(result == Pet("rat", "Mike")); // true
   print(result?.toString());
 
   result = _emptyCollection.maxOrNull; // []
+  assert(result == null); // true
+  print(result?.toString());
+
+  print('---- --------- ----\n');
+}
+
+void _maxOrNullWhere() {
+  print('---- maxOrNullWhere ----\n');
+
+  // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
+  var result = _collection.maxOrNullWhere((_) => _.name != "cat");
+  assert(result == Pet("rat", "Mike")); // true
+  print(result?.toString());
+
+  result = _emptyCollection.maxOrNullWhere((_) => _.name == "rabbit"); // []
   assert(result == null); // true
   print(result?.toString());
 
@@ -119,9 +189,13 @@ void _groupMap() {
 
 void iterableComparableTest() {
   _min();
+  _minWhere();
   _minOrNull();
+  _minOrNullWhere();
   _max();
+  _maxWhere();
   _maxOrNull();
+  _maxOrNullWhere();
   _group();
   _groupMap();
 }
