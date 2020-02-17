@@ -1,5 +1,10 @@
 # Changelog
 
+## [1.0.0]
+
+* Added `distinctWhere`, `unionWhere`, `intersectionWhere`, `differenceWhere` extensions
+* Added `minWhere`, `maxWhere`, `minOrNullWhere`, `maxOrNullWhere` extensions
+
 ## [0.5.0]
 
 * Added `whereList`, `whereMapList`, `mapWhereList`, `notNull` extensions

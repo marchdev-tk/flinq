@@ -15,6 +15,12 @@ void iterableSetTest() {
   print(collectionOne.intersection(collectionTwo)); // [5]
   print(collectionOne.difference(collectionTwo)); // [2, 8]
   print(collectionTwo.difference(collectionOne)); // [1, 3, 7]
+
+  print(collectionOne.distinctWhere((_) => _ > 4)); // [2, 5, 8]
+  print(collectionOne.unionWhere(collectionTwo, (_) => _ > 4)); // [5, 8, 7]
+  print(collectionOne.intersectionWhere(collectionTwo, (_) => _ < 4)); // []
+  print(collectionOne.differenceWhere(collectionTwo, (_) => _ < 4)); // [2]
+  print(collectionTwo.differenceWhere(collectionOne, (_) => _ < 4)); // [1, 3]
  
   print('---- ------------ ----\n');
 }

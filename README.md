@@ -35,13 +35,13 @@ This package will help you to reduce the amount of boilerplate code by adding fo
 
 * method `sumWhere` and `averageWhere` for getting sum and average from filtered collection of `num`s
 
-* getter `distinct` which will return `List` with unique values in collection
+* getter `distinct` and method `distinctWhere` which will return `List` with unique values in collection
 
-* method `union` which will return `List` with union of two collections with only unique values in resulting collection
+* method `union` and `unionWhere` which will return `List` with union of two collections with only unique values in resulting collection
 
-* method `intersection` which will return `List` with elements that contains both collections with only unique values in resulting collection
+* method `intersection` and `intersectionWhere` which will return `List` with elements that contains both collections with only unique values in resulting collection
 
-* method `difference` which will return `List` with difference between two collections with only unique values in resulting collection
+* method `difference` and `differenceWhere` which will return `List` with difference between two collections with only unique values in resulting collection
 
 ## Examples
 
@@ -195,9 +195,16 @@ final average = [1, 3, 5, 7, 4, 4].averageWhere((_) => _ > 4); // 6
 
 ```dart
 final collectionOne = [2, 5, 8, 2];
-final collectionTwo = [1, 3, 5, 7];
 
 final distinctCollection = collectionOne.distinct; // [2, 5, 8]
+```
+
+* **distinctWhere**
+
+```dart
+final collectionOne = [2, 5, 8, 2];
+
+final distinctCollection = collectionOne.distinctWhere((_) => _ > 4); // [5, 8]
 ```
 
 * **union**
@@ -209,6 +216,15 @@ final collectionTwo = [1, 3, 5, 7];
 final unitedCollection = collectionOne.union(collectionTwo); // [2, 5, 8, 1, 3, 7]
 ```
 
+* **unionWhere**
+
+```dart
+final collectionOne = [2, 5, 8, 2];
+final collectionTwo = [1, 3, 5, 7];
+
+final unitedCollection = collectionOne.unionWhere(collectionTwo, (_) => _ > 4); // [5, 8, 7]
+```
+
 * **intersection**
 
 ```dart
@@ -216,6 +232,15 @@ final collectionOne = [2, 5, 8, 2];
 final collectionTwo = [1, 3, 5, 7];
 
 final intersectedCollection = collectionOne.intersection(collectionTwo); // [5]
+```
+
+* **intersectionWhere**
+
+```dart
+final collectionOne = [2, 5, 8, 2];
+final collectionTwo = [1, 3, 5, 7];
+
+final intersectedCollection = collectionOne.intersectionWhere(collectionTwo, (_) => _ < 4); // []
 ```
 
 * **difference**
@@ -229,9 +254,17 @@ final differedCollection = collectionOne.difference(collectionTwo); // [2, 8]
 final differedCollection = collectionTwo.difference(collectionOne); // [1, 3, 7]
 ```
 
-## Milestones for next releases
+* **differenceWhere**
 
-* Add `minWhere` method
-* Add `maxWhere` method
-* Add `minOrNullWhere` method
-* Add `maxOrNullWhere` method
+```dart
+final collectionOne = [2, 5, 8, 2];
+final collectionTwo = [1, 3, 5, 7];
+
+final differedCollection = collectionOne.differenceWhere(collectionTwo, (_) => _ < 4); // [2]
+// or
+final differedCollection = collectionTwo.differenceWhere(collectionOne, (_) => _ < 4); // [1, 3]
+```
+
+## Feature requests
+
+Feel free to post feature requests [here](https://github.com/marchdev-tk/flinq/issues).

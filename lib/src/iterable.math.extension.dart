@@ -14,13 +14,17 @@ extension IterableMathExtension<T extends num> on Iterable<T> {
   /// If `this` is empty, the result of invoking is [0].
   num get average => this.isNotEmpty ? sum / this.length : 0;
 
-  /// Returns the sum of all elements iltered by `test` predicate.
+  /// Returns the sum of all elements filtered by `test` predicate.
   ///
   /// If `this` is empty, the result of invoking is [0].
+  ///
+  /// For more info about filtering refer to [Iterable.where].
   num sumWhere(bool test(T element)) => this.where(test).sum;
 
   /// Returns the average of all elements filtered by `test` predicate.
   ///
   /// If `this` is empty, the result of invoking is [0].
+  ///
+  /// For more info about filtering refer to [Iterable.where].
   num averageWhere(bool test(T element)) => this.where(test).average;
 }
