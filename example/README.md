@@ -7,8 +7,6 @@ Demonstrates how to use the flinq package.
 ### Pet model
 
 ```dart
-import 'package:flinq/flinq.dart';
-
 class Pet implements Comparable<Pet> {
   const Pet(this.name, this.nickname);
 
@@ -33,7 +31,6 @@ class Pet implements Comparable<Pet> {
 ### Iterable Common
 
 ```dart
-
 final _emptyCollection = [];
 final _singleItemCollection = ["item"];
 final _numCollection = [3, 6, 2, 7, 9];
@@ -214,7 +211,7 @@ void _whereList() {
   print('---- whereList ----\n');
 
   final result = _numCollection.whereList((_) => _ > 4);
-  assert(result == <int>[6, 7, 9]);
+  assert(result.toString() == <int>[6, 7, 9].toString());
   print(result.toString());
 
   print('---- --------- ----\n');
@@ -224,7 +221,7 @@ void _whereMapList() {
   print('---- whereMapList ----\n');
 
   final result = _numCollection.whereMapList((_) => _ > 4, (_) => _.toDouble());
-  assert(result == <double>[6, 7, 9]);
+  assert(result.toString() == <double>[6, 7, 9].toString());
   print(result.toString());
 
   print('---- ------------ ----\n');
@@ -235,7 +232,7 @@ void _mapWhereList() {
 
   final result =
       _numCollection.mapWhereList<double>((_) => _.toDouble(), (_) => _ > 4);
-  assert(result == <double>[6, 7, 9]);
+  assert(result.toString() == <double>[6, 7, 9].toString());
   print(result.toString());
 
   print('---- ------------ ----\n');
@@ -253,6 +250,40 @@ void _notNull() {
   print('---- ------- ----\n');
 }
 
+void _group() {
+  print('---- group ----\n');
+
+  final result = _comparableCollection.group((item) => item.name.endsWith('at'));
+  assert(result.toString() ==
+      <bool, List<Pet>>{
+        true: [
+          Pet("rat", "Mike"),
+          Pet("cat", "Lucy"),
+        ],
+        false: [
+          Pet("dog", "Rex"),
+        ],
+      }.toString()); // true
+  print(result?.toString());
+
+  print('---- ----- ----\n');
+}
+
+void _groupMap() {
+  print('---- groupMap ----\n');
+
+  final result = _comparableCollection.groupMap(
+      (item) => item.name.endsWith('at'), (group) => group.length);
+  assert(result.toString() ==
+      <bool, int>{
+        true: 2,
+        false: 1,
+      }.toString()); // true
+  print(result?.toString());
+
+  print('---- -------- ----\n');
+}
+
 void iterableCommonTest() {
   _firstOrNull();
   _lastOrNull();
@@ -265,13 +296,14 @@ void iterableCommonTest() {
   _whereMapList();
   _mapWhereList();
   _notNull();
+  _group();
+  _groupMap();
 }
 ```
 
 ### Iterable Comparable
 
 ```dart
-
 final _emptyCollection = <Pet>[];
 final _collection = [
   Pet("rat", "Mike"),
@@ -419,40 +451,6 @@ void _maxOrNullWhere() {
   print('---- --------- ----\n');
 }
 
-void _group() {
-  print('---- group ----\n');
-
-  final result = _collection.group((item) => item.name.endsWith('at'));
-  assert(result.toString() ==
-      <bool, List<Pet>>{
-        true: [
-          Pet("rat", "Mike"),
-          Pet("cat", "Lucy"),
-        ],
-        false: [
-          Pet("dog", "Rex"),
-        ],
-      }.toString()); // true
-  print(result?.toString());
-
-  print('---- ----- ----\n');
-}
-
-void _groupMap() {
-  print('---- groupMap ----\n');
-
-  final result = _collection.groupMap(
-      (item) => item.name.endsWith('at'), (group) => group.length);
-  assert(result.toString() ==
-      <bool, int>{
-        true: 2,
-        false: 1,
-      }.toString()); // true
-  print(result?.toString());
-
-  print('---- -------- ----\n');
-}
-
 void iterableComparableTest() {
   _min();
   _minWhere();
@@ -462,8 +460,6 @@ void iterableComparableTest() {
   _maxWhere();
   _maxOrNull();
   _maxOrNullWhere();
-  _group();
-  _groupMap();
 }
 ```
 
