@@ -77,29 +77,4 @@ extension IterableComparableExtension<T extends Comparable> on Iterable<T> {
   ///
   /// For more info about filtering refer to [Iterable.where].
   T maxOrNullWhere(bool test(T element)) => this.where(test).maxOrNull;
-
-  /// Groups [Iterable] via `K by(T item)`
-  ///
-  /// if [this] is empty, the result of invoking is [<K, List<T>>{}]
-  Map<K, List<T>> group<K>(K by(T item)) {
-    final map = <K, List<T>>{};
-
-    this.forEach((value) {
-      final key = by(value);
-
-      if (map.containsKey(key)) {
-        map[key].add(value);
-      } else {
-        map[key] = <T>[value];
-      }
-    });
-
-    return map;
-  }
-
-  /// Groups [Iterable] via `K by(T item)` and maps it using `V as(List<T> item)` conversion.
-  ///
-  /// For more info about mapping refer to [Iterable.map].
-  Map<K, V> groupMap<K, V>(K by(T item), V as(List<T> item)) =>
-      group(by).map((k, v) => MapEntry(k, as(v)));
 }

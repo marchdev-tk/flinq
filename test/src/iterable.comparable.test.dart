@@ -18,8 +18,6 @@ void iterableComparableTests() {
   maxWhereTests();
   minOrNullWhereTests();
   maxOrNullWhereTests();
-  groupTests();
-  groupMapTest();
 }
 
 void minTests() {
@@ -161,60 +159,5 @@ void maxOrNullWhereTests() {
   test(
     'Iterable<T extends Comparable>.maxOrNullWhere on collection with many elements',
     () => expect(_manyCollection.maxOrNullWhere((_) => _ < 4), 3),
-  );
-}
-
-void groupTests() {
-  test(
-    'Iterable<T extends Comparable>.group on empty collection',
-    () => expect(_emptyCollection.group((item) => item), <int, List<int>>{}),
-  );
-  test(
-    'Iterable<T extends Comparable>.group on collection with 1 element',
-    () => expect(_oneItemCollection.group((item) => item), <int, List<int>>{
-      7: [7]
-    }),
-  );
-  test(
-    'Iterable<T extends Comparable>.group on collection with many elements',
-    () => expect(
-        _manyCollection.followedBy(<int>[4, 4, 6, 3]).group((item) => item),
-        <int, List<int>>{
-          4: [4, 4, 4],
-          3: [3, 3],
-          6: [6, 6],
-          1: [1],
-          9: [9],
-          5: [5],
-        }),
-  );
-}
-
-void groupMapTest() {
-  test(
-    'Iterable<T extends Comparable>.groupMap on empty collection',
-    () => expect(
-        _emptyCollection.groupMap((item) => item, (group) => group.length),
-        <int, int>{}),
-  );
-  test(
-    'Iterable<T extends Comparable>.groupMap on collection with 1 element',
-    () => expect(
-        _oneItemCollection.groupMap((item) => item, (group) => group.length),
-        <int, int>{7: 1}),
-  );
-  test(
-    'Iterable<T extends Comparable>.groupMap on collection with many elements',
-    () => expect(
-        _manyCollection.followedBy(<int>[4, 4, 6, 3]).groupMap(
-            (item) => item, (group) => group.length),
-        <int, int>{
-          4: 3,
-          3: 2,
-          6: 2,
-          1: 1,
-          9: 1,
-          5: 1,
-        }),
   );
 }

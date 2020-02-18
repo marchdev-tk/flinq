@@ -153,40 +153,6 @@ void _maxOrNullWhere() {
   print('---- --------- ----\n');
 }
 
-void _group() {
-  print('---- group ----\n');
-
-  final result = _collection.group((item) => item.name.endsWith('at'));
-  assert(result.toString() ==
-      <bool, List<Pet>>{
-        true: [
-          Pet("rat", "Mike"),
-          Pet("cat", "Lucy"),
-        ],
-        false: [
-          Pet("dog", "Rex"),
-        ],
-      }.toString()); // true
-  print(result?.toString());
-
-  print('---- ----- ----\n');
-}
-
-void _groupMap() {
-  print('---- groupMap ----\n');
-
-  final result = _collection.groupMap(
-      (item) => item.name.endsWith('at'), (group) => group.length);
-  assert(result.toString() ==
-      <bool, int>{
-        true: 2,
-        false: 1,
-      }.toString()); // true
-  print(result?.toString());
-
-  print('---- -------- ----\n');
-}
-
 void iterableComparableTest() {
   _min();
   _minWhere();
@@ -196,6 +162,4 @@ void iterableComparableTest() {
   _maxWhere();
   _maxOrNull();
   _maxOrNullWhere();
-  _group();
-  _groupMap();
 }

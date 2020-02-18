@@ -225,6 +225,40 @@ void _notNull() {
   print('---- ------- ----\n');
 }
 
+void _group() {
+  print('---- group ----\n');
+
+  final result = _comparableCollection.group((item) => item.name.endsWith('at'));
+  assert(result.toString() ==
+      <bool, List<Pet>>{
+        true: [
+          Pet("rat", "Mike"),
+          Pet("cat", "Lucy"),
+        ],
+        false: [
+          Pet("dog", "Rex"),
+        ],
+      }.toString()); // true
+  print(result?.toString());
+
+  print('---- ----- ----\n');
+}
+
+void _groupMap() {
+  print('---- groupMap ----\n');
+
+  final result = _comparableCollection.groupMap(
+      (item) => item.name.endsWith('at'), (group) => group.length);
+  assert(result.toString() ==
+      <bool, int>{
+        true: 2,
+        false: 1,
+      }.toString()); // true
+  print(result?.toString());
+
+  print('---- -------- ----\n');
+}
+
 void iterableCommonTest() {
   _firstOrNull();
   _lastOrNull();
@@ -237,4 +271,6 @@ void iterableCommonTest() {
   _whereMapList();
   _mapWhereList();
   _notNull();
+  _group();
+  _groupMap();
 }
