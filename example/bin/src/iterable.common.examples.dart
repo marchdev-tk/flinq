@@ -228,7 +228,8 @@ void _notNull() {
 void _group() {
   print('---- group ----\n');
 
-  final result = _comparableCollection.group((item) => item.name.endsWith('at'));
+  final result =
+      _comparableCollection.group((item) => item.name.endsWith('at'));
   assert(result.toString() ==
       <bool, List<Pet>>{
         true: [
