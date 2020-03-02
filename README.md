@@ -29,6 +29,8 @@ This package will help you to reduce the amount of boilerplate code by adding fo
 
 * getter `notNull` for getting only **not null** values from the collection
 
+* method `group` and `groupMap` for grouping a collection
+
 * getter `min`/`minOrNull` and `max`/`maxOrNull` for getting minimal or maximal value from collection of `Comparable`s
 
 * method `minWhere`/`minOrNullWhere` and `maxWhere`/`maxOrNullWhere` for getting minimal or maximal value from filtered collection of `Comparable`s
@@ -105,40 +107,6 @@ List<double> mappedFilteredList = [3, 6, 2, 7, 9].mapWhereList((item) => item.to
 Iterable<int> notNullIterable = [3, 6, 2, null, 7, 9].notNull;
 ```
 
-### Comparable
-
-* **min** and **minOrNull**
-
-```dart
-final min = [3, 6, 2, 7, 9].min; // 2
-// or
-final min = [].minOrNull; // null
-```
-
-* **minWhere** and **minOrNullWhere**
-
-```dart
-final min = [3, 6, 2, 7, 9].minWhere((_) => _ > 4); // 6
-// or
-final min = [3, 2].minOrNullWhere((_) => _ > 4); // null
-```
-
-* **max** and **maxOrNull**
-
-```dart
-final max = [3, 6, 2, 7, 9].max; // 9
-// or
-final max = [].maxOrNull; // null
-```
-
-* **maxWhere** and **maxOrNullWhere**
-
-```dart
-final max = [3, 6, 2, 7, 9].maxWhere((_) => _ < 4); // 3
-// or
-final max = [3, 2].maxOrNullWhere((_) => _ > 4); // null
-```
-
 * **group**
 
 ```dart
@@ -179,6 +147,40 @@ final collection = [
 */
 final groupMapped = collection.groupMap(
       (item) => item.name.endsWith('at'), (group) => group.length);
+```
+
+### Comparable
+
+* **min** and **minOrNull**
+
+```dart
+final min = [3, 6, 2, 7, 9].min; // 2
+// or
+final min = [].minOrNull; // null
+```
+
+* **minWhere** and **minOrNullWhere**
+
+```dart
+final min = [3, 6, 2, 7, 9].minWhere((_) => _ > 4); // 6
+// or
+final min = [3, 2].minOrNullWhere((_) => _ > 4); // null
+```
+
+* **max** and **maxOrNull**
+
+```dart
+final max = [3, 6, 2, 7, 9].max; // 9
+// or
+final max = [].maxOrNull; // null
+```
+
+* **maxWhere** and **maxOrNullWhere**
+
+```dart
+final max = [3, 6, 2, 7, 9].maxWhere((_) => _ < 4); // 3
+// or
+final max = [3, 2].maxOrNullWhere((_) => _ > 4); // null
 ```
 
 ### Math
@@ -283,6 +285,6 @@ final differedCollection = collectionOne.differenceWhere(collectionTwo, (_) => _
 final differedCollection = collectionTwo.differenceWhere(collectionOne, (_) => _ < 4); // [1, 3]
 ```
 
-## Feature requests
+## Feature requests and Bug reports
 
-Feel free to post feature requests [here](https://github.com/marchdev-tk/flinq/issues).
+Feel free to post a feature requests or report a bug [here](https://github.com/marchdev-tk/flinq/issues).
