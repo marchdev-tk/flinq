@@ -7,6 +7,3 @@ environment:
 dependencies:
   flinq:
     path: ../
-
-dev_dependencies:
-  test: ^1.6.0

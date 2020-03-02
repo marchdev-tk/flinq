@@ -1,5 +1,9 @@
 # Changelog
 
+## [1.1.1]
+
+* Update docs
+
 ## [1.1.0]
 
 * Moved `group` and `groupMap` to common extensions
