@@ -1,4 +1,4 @@
-// Copyright (c) 2020, the MarchDev Toolkit project authors. Please see the AUTHORS file
+// Copyright (c) 2021, the MarchDev Toolkit project authors. Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
@@ -29,7 +29,7 @@ extension IterableComparableExtension<T extends Comparable> on Iterable<T> {
   /// Returns the element with minimum value.
   ///
   /// If `this` is empty, the result of invoking is [null].
-  T get minOrNull {
+  T? get minOrNull {
     if (this.isEmpty) {
       return null;
     }
@@ -39,7 +39,7 @@ extension IterableComparableExtension<T extends Comparable> on Iterable<T> {
   /// Returns the element with maximum value.
   ///
   /// If `this` is empty, the result of invoking is [null].
-  T get maxOrNull {
+  T? get maxOrNull {
     if (this.isEmpty) {
       return null;
     }
@@ -68,7 +68,7 @@ extension IterableComparableExtension<T extends Comparable> on Iterable<T> {
   /// If `this` is empty, the result of invoking is [null].
   ///
   /// For more info about filtering refer to [Iterable.where].
-  T minOrNullWhere(bool test(T element)) => this.where(test).minOrNull;
+  T? minOrNullWhere(bool test(T element)) => this.where(test).minOrNull;
 
   /// Returns the element with maximum value of filtered
   /// collection by `test` predicate.
@@ -76,5 +76,5 @@ extension IterableComparableExtension<T extends Comparable> on Iterable<T> {
   /// If `this` is empty, the result of invoking is [null].
   ///
   /// For more info about filtering refer to [Iterable.where].
-  T maxOrNullWhere(bool test(T element)) => this.where(test).maxOrNull;
+  T? maxOrNullWhere(bool test(T element)) => this.where(test).maxOrNull;
 }
