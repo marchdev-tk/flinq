@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1
+
+* Added collection dependency
+
 ## 2.0.0
 
 * Updated to NNBD
