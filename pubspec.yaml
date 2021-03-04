@@ -1,5 +1,5 @@
 name: flinq
-version: 2.0.0
+version: 2.0.1
 homepage: https://github.com/marchdev-tk/flinq
 description: Extended capabilities for collections. It's a bunch of shortcuts to avoid unnecesary boilerplate work with collections.
 
@@ -7,6 +7,7 @@ environment:
   sdk: '>=2.12.0 <3.0.0'
 
 dependencies:
+  collection: ^1.15.0
 
 dev_dependencies:
   pedantic: ^1.11.0
