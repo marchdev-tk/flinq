@@ -1,4 +1,4 @@
-// Copyright (c) 2020, the MarchDev Toolkit project authors. Please see the AUTHORS file
+// Copyright (c) 2021, the MarchDev Toolkit project authors. Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
@@ -218,7 +218,7 @@ void _notNull() {
 
   final numCollection = [null, ..._numCollection, null];
 
-  final result = numCollection.notNull;
+  final result = numCollection.notNull as Iterable<int>;
   assert(result.toString() == _numCollection.toString());
   print(result.toString());
 
@@ -240,7 +240,7 @@ void _group() {
           Pet("dog", "Rex"),
         ],
       }.toString()); // true
-  print(result?.toString());
+  print(result.toString());
 
   print('---- ----- ----\n');
 }
@@ -255,7 +255,7 @@ void _groupMap() {
         true: 2,
         false: 1,
       }.toString()); // true
-  print(result?.toString());
+  print(result.toString());
 
   print('---- -------- ----\n');
 }

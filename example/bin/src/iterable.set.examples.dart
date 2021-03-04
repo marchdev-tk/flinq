@@ -1,4 +1,4 @@
-// Copyright (c) 2020, the MarchDev Toolkit project authors. Please see the AUTHORS file
+// Copyright (c) 2021, the MarchDev Toolkit project authors. Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
@@ -21,6 +21,6 @@ void iterableSetTest() {
   print(collectionOne.intersectionWhere(collectionTwo, (_) => _ < 4)); // []
   print(collectionOne.differenceWhere(collectionTwo, (_) => _ < 4)); // [2]
   print(collectionTwo.differenceWhere(collectionOne, (_) => _ < 4)); // [1, 3]
- 
+
   print('---- ------------ ----\n');
 }

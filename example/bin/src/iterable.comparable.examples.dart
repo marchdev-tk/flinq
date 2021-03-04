@@ -1,4 +1,4 @@
-// Copyright (c) 2020, the MarchDev Toolkit project authors. Please see the AUTHORS file
+// Copyright (c) 2021, the MarchDev Toolkit project authors. Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
@@ -19,12 +19,12 @@ void _min() {
   // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
   var result = _collection.min;
   assert(result == Pet("cat", "Lucy")); // true
-  print(result?.toString());
+  print(result.toString());
 
   try {
     result = _emptyCollection.min; // []
     assert(false);
-    print(result?.toString());
+    print(result.toString());
   } catch (e) {
     assert(e is StateError); // true (No element)
     print(e.toString());
@@ -39,12 +39,12 @@ void _minWhere() {
   // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
   var result = _collection.minWhere((_) => _.name != "cat");
   assert(result == Pet("dog", "Rex")); // true
-  print(result?.toString());
+  print(result.toString());
 
   try {
     result = _collection.minWhere((_) => _.name == "rabbit"); // []
     assert(false);
-    print(result?.toString());
+    print(result.toString());
   } catch (e) {
     assert(e is StateError); // true (No element)
     print(e.toString());
@@ -89,12 +89,12 @@ void _max() {
   // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
   var result = _collection.max;
   assert(result == Pet("rat", "Mike")); // true
-  print(result?.toString());
+  print(result.toString());
 
   try {
     result = _emptyCollection.max; // []
     assert(false);
-    print(result?.toString());
+    print(result.toString());
   } catch (e) {
     assert(e is StateError); // true (No element)
     print(e.toString());
@@ -109,12 +109,12 @@ void _maxWhere() {
   // [ Pet("rat", "Mike"), Pet("dog", "Rex"), Pet("cat", "Lucy") ]
   var result = _collection.maxWhere((_) => _.name != "cat");
   assert(result == Pet("rat", "Mike")); // true
-  print(result?.toString());
+  print(result.toString());
 
   try {
     result = _collection.maxWhere((_) => _.name == "rabbit"); // []
     assert(false);
-    print(result?.toString());
+    print(result.toString());
   } catch (e) {
     assert(e is StateError); // true (No element)
     print(e.toString());
