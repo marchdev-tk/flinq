@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.0.2
+
+* Updated docs due to changes in `singleOrNull` and `singleOrNullWhere` API
+* Fixed tests for `singleOrNull` and `singleOrNullWhere`
+
 ## 2.0.1
 
 * Added collection dependency

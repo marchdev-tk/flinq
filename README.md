@@ -17,7 +17,7 @@ This package will help you to reduce the amount of boilerplate code by adding fo
 
 * getter `lastOrNull` and method `lastOrNullWhere` for getting last value, and if it will not be found returns `null`
 
-* getter `singleOrNull` and method `singleOrNullWhere` for getting single value, and if it will not be found returns `null`, and if there will be too many elements it'll throw the `StateError`
+* getter `singleOrNull` and method `singleOrNullWhere` for getting single value, and if it will not be found returns `null`, and if there will be too many elements it'll also return `null`
 
 * method `mapList`, which maps collection and casts it to `List`
 

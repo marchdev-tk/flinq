@@ -2,12 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
-import 'package:test/test.dart';
-import 'package:flinq/flinq.dart';
-
-final Iterable<int> _emptyCollection = <int>[];
-final Iterable<int> _oneItemCollection = <int>[7];
-final Iterable<int> _manyCollection = <int>[4, 3, 6, 1, 9, 5];
+part of '../flinq_test.dart';
 
 void iterableCommonTests() {
   firstOrNullTests();
@@ -65,8 +60,7 @@ void singleOrNullTests() {
   );
   test(
     'Iterable.singleOrNull on collection with many elements',
-    () => expect(
-        () => _manyCollection.singleOrNull, throwsA(TypeMatcher<StateError>())),
+    () => expect(_manyCollection.singleOrNull, null),
   );
 }
 
@@ -135,8 +129,7 @@ void singleOrNullWhereTests() {
   );
   test(
     'Iterable.singleOrNullWhere on collection with many elements, too many',
-    () => expect(() => _manyCollection.singleOrNullWhere((_) => _ > 3),
-        throwsA(TypeMatcher<StateError>())),
+    () => expect(_manyCollection.singleOrNull, null),
   );
 }
 

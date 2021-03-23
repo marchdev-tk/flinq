@@ -25,8 +25,7 @@ extension IterableCommonExtension<T> on Iterable<T> {
 
   /// Checks that this iterable has only one element, and returns that element.
   ///
-  /// If `this` has no element, the result is [null].
-  /// Throws a [StateError] if `this` has more than one element.
+  /// Returns [null] if there are either no elements or more than one element.
   T? get singleOrNull => this.singleWhereOrNull((_) => true);
 
   /// Returns the first element that satisfies the given predicate [test].
@@ -50,10 +49,8 @@ extension IterableCommonExtension<T> on Iterable<T> {
 
   /// Returns the single element that satisfies [test].
   ///
-  /// Checks elements to see if `test(element)` returns true.
-  /// If exactly one element satisfies [test], that element is returned.
-  /// If more than one matching element is found, throws [StateError].
-  /// If no matching element is found, returns [null].
+  /// Returns [null] if there are either no elements or more than one element
+  /// satisfying [test].
   T? singleOrNullWhere(bool test(T element)) => this.singleWhereOrNull(test);
 
   /// Maps [Iterable] and casts it to a [List].
