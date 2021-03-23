@@ -1,5 +1,5 @@
 name: flinq
-version: 2.0.1
+version: 2.0.2
 homepage: https://github.com/marchdev-tk/flinq
 issue_tracker: https://github.com/marchdev-tk/flinq/issues
 description: Extended capabilities for collections. It's a bunch of shortcuts to avoid unnecesary boilerplate work with collections.
